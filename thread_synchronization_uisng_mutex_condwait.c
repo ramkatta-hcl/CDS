@@ -1,4 +1,5 @@
 /*thread_synchronization_uisng_mutex_condwait */
+/*thread 1 prints odd num's and thread 2 prints even num's and the final o/p should come in order ex: 1,2,3,4..*/
 
 #include <stdio.h>
 #include <pthread.h>
@@ -77,3 +78,33 @@ int main() {
     pthread_mutex_destroy(&mutex_lock);
 
 }
+
+output:
+
+bgl-ads-938:677> gcc thread_synchronization_uisng_mutex_condwait.c -lpthread
+bgl-ads-938:678> 
+bgl-ads-938:678> 
+bgl-ads-938:678> ./a.out 
+in main waiting for thread1 join
+thread2: 0
+thread1: 1
+thread2: 2
+thread1: 3
+thread2: 4
+thread1: 5
+thread2: 6
+thread1: 7
+thread2: 8
+thread1: 9
+thread2: 10
+thread1: 11
+thread2: 12
+thread1: 13
+thread2: 14
+thread1: 15
+thread2: 16
+thread1: 17
+thread2: 18
+thread1: 19
+in main waiting for thread2 to join
+bgl-ads-938:679>
