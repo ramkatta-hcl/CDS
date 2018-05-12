@@ -1,1 +1,156 @@
-#include <stdio.h>
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <malloc.h>
+ 
+ typedef struct node {
+     int data;
+     struct node *ptr;
+ }NODE;
+ 
+ NODE *top = NULL;
+ NODE *temp = NULL;
+ NODE *top1 = NULL;
+ 
+void push (int data) {
+    if(top == NULL) {
+        top = (NODE *) malloc(sizeof(NODE));
+        if (!top) {
+            printf("Failed to allocate the memory\n");
+            return;
+        } else {
+            top->data = data;
+            top->ptr = NULL;
+        }
+    } else {
+        temp = (NODE *) malloc(sizeof(NODE));
+        temp->data = data;
+        temp->ptr = top;
+        top = temp;
+    }
+}
+
+void display() {
+    top1 = top;
+    if (top1 == NULL) {
+        printf("stack is empty\n");
+        return;
+    } else {
+        while (top1->ptr !=NULL) {
+            printf ("%d ", top1->data);
+            top1 = top1->ptr;
+        }
+        printf("%d \n", top1->data);
+    }
+    return;
+}
+
+oid pop () {
+    top1 = top;
+    if (top1 == NULL) {
+        printf("Stack is empty\n");
+        return;
+    } else {
+        top = top->ptr;
+        free(top1);
+    }
+}
+oid destroy() {
+    top1=top;
+
+    if(top1==NULL) {
+        printf("Stack is empty\n");
+        return;
+    } else {
+        while(top1 != NULL) {
+            top1 = top->ptr;
+            free(top);
+            top = top1;
+            top1 = top1->ptr;
+        }
+        free(top1);
+        top=top1=NULL;
+    }
+}
+
+void stack_count() {
+    int count=0;
+
+    top1= top;
+    if(top1 == NULL) {
+        printf("stack is empty\n");
+        return;
+    } else {
+        while(top1->ptr != NULL) {
+            count++;
+            top1=top1->ptr;
+        }
+        count++;
+        printf("No.of elements in the stack is: %d\n", count);
+        return;
+    }
+}
+
+nt main() {
+    int num_elements;
+    int choice;
+    int data;
+    int count=0;
+
+    printf("Enter the num of elements to be placed in stack: ");
+    scanf("%d", &num_elements);
+
+    while (1) {
+        printf(" \nchoose your choice: \n");
+        printf("1. push\n");
+        printf("2. display\n");
+        printf("3. pop\n");
+        printf("4. stack count\n");
+        printf("5. Destroy\n");
+        printf("6. exit\n");
+
+        printf("enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("enter the data: ");
+                scanf("%d", &data);
+                if(count < num_elements) {
+                    push(data);
+                    count++;
+                } else {
+                    printf("reached stack limit\n");
+                }
+                break;
+
+            case 2:
+                display();
+                break;
+
+            case 3:
+                pop();
+                break;
+
+            case 4:
+                stack_count();
+                break;
+
+            case 5:
+               destroy();
+               break;
+
+            case 6:
+                exit(0);
+
+            default:
+                break;
+
+        }
+    }
+    return;
+}
+
+
+
+
