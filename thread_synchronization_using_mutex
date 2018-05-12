@@ -1,4 +1,10 @@
-
+/*thread synchronization using mutex*/
+/* Thread 1 prints even num
+ * thread 2 prints odd num
+ * final o/p should be in the order. ex: 1,2,3,4,5..etc
+ * this program giving the expected o/p though we are not using pthread_cond_wait() & pthread_cond_signal()
+ * but the o/p is not guranteed to come always as shown in the o/p and it may vary
+ */
 
 #include <stdio.h>
 #include <pthread.h>
