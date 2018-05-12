@@ -1,0 +1,104 @@
+
+
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+pthread_mutex_t mutex_lock;
+int count = 0;
+
+void *thread_function1() {
+    pthread_mutex_lock(&mutex_lock);
+    while(count<20) {
+        if (count%2 == 0) {
+            printf("thread1: %d\n", count);
+            count++;
+        } else {
+            pthread_mutex_unlock(&mutex_lock);
+        }
+    }
+    pthread_exit(NULL);
+}
+
+void *thread_function2() {
+    pthread_mutex_lock(&mutex_lock);
+    while(count<20) {
+        if (count%2 != 0) {
+            printf("thread2: %d\n", count);
+            count++;
+        } else {
+            pthread_mutex_unlock(&mutex_lock);
+        }
+    }
+    pthread_exit(NULL);
+}
+
+int main() {
+    pthread_t thread_id[1];
+    int ret;
+    void *thread_result;
+
+    ret=pthread_mutex_init(&mutex_lock, NULL);
+    if(ret!=0) {
+        perror("failed to initialize mutex\n");
+        return;
+    }
+
+    ret = pthread_create(&thread_id[0], 0, thread_function1, NULL);
+    if (ret != 0) {
+        perror("thread1 creation failed\n");
+        return;
+    }
+
+    ret = pthread_create(&thread_id[1], 0, thread_function2, NULL);
+    if (ret !=0) {
+        perror("thread2 creation failed\n");
+        return;
+    }
+
+    printf("in main waiting for thread1 join\n");
+    ret = pthread_join(thread_id[0], NULL);
+    if (ret != 0) {
+        perror("Failed to join thread1\n");
+    }
+
+    printf("in main waiting for thread2 to join\n");
+    ret = pthread_join(thread_id[1], NULL);
+    if(ret != 0) {
+        perror("failed to join thread2\n");
+    }
+
+    pthread_mutex_destroy(&mutex_lock);
+
+}
+
+output:
+
+bgl-ads-938:682> gcc thread_synchronization_uisng_mutex1.c -lpthread
+bgl-ads-938:683> 
+bgl-ads-938:683> 
+bgl-ads-938:683> ./a.out 
+in main waiting for thread1 join
+thread1: 0
+thread2: 1
+thread1: 2
+thread2: 3
+thread1: 4
+thread2: 5
+thread1: 6
+thread2: 7
+thread1: 8
+thread2: 9
+thread1: 10
+thread2: 11
+thread1: 12
+thread2: 13
+thread1: 14
+thread2: 15
+thread1: 16
+thread2: 17
+thread1: 18
+thread2: 19
+in main waiting for thread2 to join
+bgl-ads-938:684>
