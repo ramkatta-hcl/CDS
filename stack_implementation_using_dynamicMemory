@@ -152,5 +152,115 @@ nt main() {
 }
 
 
+bgl-ads-938:785> gcc stack.c
+bgl-ads-938:786> 
+bgl-ads-938:786> 
+bgl-ads-938:786> 
+bgl-ads-938:786> ./a.out 
+Enter the num of elements to be placed in stack: 4
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 1
+enter the data: 10
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 1
+enter the data: 20
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 1
+enter the data: 30
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 2
+30 20 10 
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 1
+enter the data: 40
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 2
+40 30 20 10 
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 1
+enter the data: 50
+reached stack limit
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 2
+40 30 20 10 
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 2
+40 30 20 10 
+ 
+choose your choice: 
+1. push
+2. display
+3. pop
+4. stack count
+5. Destroy
+6. exit
+enter your choice: 
+^C
+bgl-ads-938:787> 
+bgl-ads-938:787> 
+ 
 
 
